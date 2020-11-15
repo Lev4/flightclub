@@ -38,7 +38,8 @@ class FlightSearch:
             params=query,
         )
         try:
-            data = response.json()["app"][0]
+
+            data = response.json()["data"][0]
 
             flight_data = FlightData(
                 price=data["price"],
@@ -54,5 +55,9 @@ class FlightSearch:
 
         except IndexError:
             print(f'app empty {destination_city_code} {from_time.strftime("%d/%m/%Y")} {to_time.strftime("%d/%m/%Y")}')
-
             return None
+
+        except KeyError:
+            print(response.json())
+            return None
+

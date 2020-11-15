@@ -1,10 +1,10 @@
 import logging
 import os
 import pandas as pd
-
+from config import DATAFILE_PATH
 logging.basicConfig(level=logging.INFO)
-fpth = os.path.join('FlightDeals.xlsx')
 
+fpth = DATAFILE_PATH
 
 class DataManager:
 
