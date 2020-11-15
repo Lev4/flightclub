@@ -10,7 +10,7 @@ from config import BOT_TOKEN, ADMIN_ID
 s = sched.scheduler(time.time, time.sleep)
 
 data_manager = DataManager()
-notification_manager = otificationManager(BOT_TOKEN, ADMIN_ID)
+notification_manager = NotificationManager(BOT_TOKEN, ADMIN_ID)
 
 data_package = {
     "sheet_data": data_manager.get_destination_data(),
