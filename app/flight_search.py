@@ -1,6 +1,6 @@
 import requests
-from src.flight_data import FlightData
-from src.config import TEQUILA_API_KEY
+from app.flight_data import FlightData
+from config import TEQUILA_API_KEY
 
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
 
