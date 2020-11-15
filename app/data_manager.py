@@ -1,10 +1,11 @@
 import logging
-import os
 import pandas as pd
 from config import DATAFILE_PATH
-logging.basicConfig(level=logging.INFO)
+
+logging.basicConfig(level = logging.INFO)
 
 fpth = DATAFILE_PATH
+
 
 class DataManager:
 
@@ -16,4 +17,3 @@ class DataManager:
         df = pd.read_excel(self.fpth)
         self.destination_data = df.to_dict('records')
         return self.destination_data
-
