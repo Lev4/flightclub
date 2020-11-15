@@ -23,7 +23,8 @@ data_package = {
 delay_seconds1 = 60
 delay_seconds2 = 100
 
-def search_flights(data_pack, period):
+
+def search_flights(data_pack, period, msg_cache=list()):
     for destination in data_pack["sheet_data"]:
 
         if period == "long":
@@ -55,17 +56,25 @@ def search_flights(data_pack, period):
                 msg += f"в {flight.destination_city}-{flight.destination_airport} за {flight.price} рублей.\n"
                 msg += f"Даты: {flight.out_date} ({flight.out_date_weekday}) - {flight.return_date} ({flight.return_date_weekday}).\n "
                 msg += f"Продолжительность {flight.duration_days} д"
+                if msg not in msg_cache:
+                    data_pack["notification_manager"].send_sms(
+                        message = msg
+                    )
+                    msg_cache.append(message)
 
-                data_pack["notification_manager"].send_sms(
-                    message = msg
-                )
 
+message_cache = []
 
 while True:
-    s.enter(delay_seconds1, 1, search_flights, kwargs = {"data_pack": data_package, "period": "short"})
-    s.enter(delay_seconds2, 2, search_flights, kwargs = {"data_pack": data_package, "period": "long"})
+    s.enter(delay_seconds1, 1, search_flights, kwargs = {"data_pack": data_package,
+                                                         "period": "short",
+                                                         "msg_cache": message_cache,
+                                                         })
+    s.enter(delay_seconds2, 2, search_flights, kwargs = {"data_pack": data_package,
+                                                         "period": "long",
+                                                         "msg_cache": message_cache,
+                                                         })
     s.run()
-
 
 # s.enter(1, 2, search_flights, kwargs = {"data_pack": data_package, "period": "long"})
 # s.run()
