@@ -1,10 +1,10 @@
-import requests
 import logging
-from config import ADMIN
+import requests
+from config import BOT_TOKEN, ADMIN_ID
 logging.basicConfig(level=logging.INFO)
 
-BOT_TOKEN = "1460584540:AAFbo8lS_tfXzoMfgWY0BtiueqimNojcq2M"
-ADMIN_ID = "224483345"
+
+
 
 
 class NotificationManager:

@@ -17,6 +17,7 @@ class FlightSearch:
         return code
 
     def check_flights(self, origin_city_code, destination_city_code, from_time, to_time):
+
         headers = {"apikey": TEQUILA_API_KEY}
         query = {
             "fly_from": origin_city_code,
@@ -38,7 +39,6 @@ class FlightSearch:
         )
         try:
             data = response.json()["data"][0]
-            # pprint(data)
 
             flight_data = FlightData(
                 price=data["price"],
