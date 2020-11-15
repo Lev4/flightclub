@@ -1,6 +1,6 @@
 import requests
 import logging
-
+from config import ADMIN
 logging.basicConfig(level=logging.INFO)
 
 BOT_TOKEN = "1460584540:AAFbo8lS_tfXzoMfgWY0BtiueqimNojcq2M"
