@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
-from data_manager import DataManager
-from flight_search import FlightSearch
-from notification import NotificationManager
-from config import BOT_TOKEN, ADMIN_ID
+from src.data_manager import DataManager
+from src.flight_search import FlightSearch
+from src.notification import NotificationManager
+from src.config import BOT_TOKEN, ADMIN_ID
 
 data_manager = DataManager()
 sheet_data = data_manager.get_destination_data()

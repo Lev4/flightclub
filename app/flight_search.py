@@ -1,6 +1,6 @@
 import requests
-from flight_data import FlightData
-from config import TEQUILA_API_KEY
+from src.flight_data import FlightData
+from src.config import TEQUILA_API_KEY
 
 TEQUILA_ENDPOINT = "https://tequila-api.kiwi.com"
 
@@ -38,7 +38,7 @@ class FlightSearch:
             params=query,
         )
         try:
-            data = response.json()["data"][0]
+            data = response.json()["app"][0]
 
             flight_data = FlightData(
                 price=data["price"],
@@ -53,6 +53,6 @@ class FlightSearch:
             return flight_data
 
         except IndexError:
-            print(f'data empty {destination_city_code} {from_time.strftime("%d/%m/%Y")} {to_time.strftime("%d/%m/%Y")}')
+            print(f'app empty {destination_city_code} {from_time.strftime("%d/%m/%Y")} {to_time.strftime("%d/%m/%Y")}')
 
             return None

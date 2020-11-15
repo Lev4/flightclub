@@ -1,6 +1,6 @@
 import logging
 import requests
-from config import BOT_TOKEN, ADMIN_ID
+
 logging.basicConfig(level=logging.INFO)
 
 
