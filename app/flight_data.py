@@ -8,3 +8,17 @@ class FlightData:
         self.destination_airport = destination_airport
         self.out_date = out_date
         self.return_date = return_date
+
+    def check_weekend(self):
+        """ Проверяет выходные """
+
+        dts = datetime.strptime(self.out_date, '%Y-%m-%d')
+        dte = datetime.strptime(self.return_date, '%Y-%m-%d')
+        delta = dte - dts
+        if 1 <= delta.days <= 2:
+            if dts.weekday() in [4, 5]:
+                return True
+            else:
+                return False
+        else:
+            return False

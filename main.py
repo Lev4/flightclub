@@ -15,6 +15,8 @@ ORIGIN_CITY_IATA = "MOW"
 tomorrow = datetime.now() + timedelta(days = 1)
 six_month_from_today = datetime.now() + timedelta(days = (6 * 30))
 
+
+
 for destination in sheet_data:
 
     flight = flight_search.check_flights(
@@ -26,9 +28,12 @@ for destination in sheet_data:
 
     if flight:
         if flight.price < destination["Lowest Price"]:
+            msg = f"Перелет из {flight.origin_city}-{flight.origin_airport}"
+            msg += f"в {flight.destination_city}-{flight.destination_airport} за {flight.price} рублей."
+            msg += f"Даты: {flight.out_date} - {flight.return_date}."
+            print(flight.out_date)
+
+
             notification_manager.send_sms(
-                message = f"""Внимание низкая цена! 
-                        Перелет из {flight.origin_city}-{flight.origin_airport} 
-                        в {flight.destination_city}-{flight.destination_airport} за {flight.price} рублей.\n
-                        Даты: {flight.out_date} - {flight.return_date}. """
+                message = msg
             )
