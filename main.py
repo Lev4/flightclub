@@ -42,7 +42,9 @@ def search_flights(data_pack, period):
             )
 
         if flight:
+            # print(flight.price, destination["Lowest Price"])
             if flight.price < destination["Lowest Price"]:
+
                 msg = ""
                 if flight.check_weekend_plus():
                     msg += "Выходные плюс 1! \n"
@@ -63,3 +65,7 @@ while True:
     s.enter(delay_seconds1, 1, search_flights, kwargs = {"data_pack": data_package, "period": "short"})
     s.enter(delay_seconds2, 2, search_flights, kwargs = {"data_pack": data_package, "period": "long"})
     s.run()
+
+
+# s.enter(1, 2, search_flights, kwargs = {"data_pack": data_package, "period": "long"})
+# s.run()
