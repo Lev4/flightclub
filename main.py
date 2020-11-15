@@ -10,11 +10,12 @@ from config import BOT_TOKEN, ADMIN_ID
 s = sched.scheduler(time.time, time.sleep)
 
 data_manager = DataManager()
+notification_manager = otificationManager(BOT_TOKEN, ADMIN_ID)
 
 data_package = {
     "sheet_data": data_manager.get_destination_data(),
     "flight_search": FlightSearch(),
-    "notification_manager": NotificationManager(BOT_TOKEN, ADMIN_ID),
+    "notification_manager": notification_manager,
     "ORIGIN_CITY_IATA": "MOW",
     "tomorrow": datetime.now() + timedelta(days = 1),
     "six_month_from_today": datetime.now() + timedelta(days = (6 * 30)),
@@ -65,6 +66,8 @@ def search_flights(data_pack, period, msg_cache=list()):
 
 message_cache = []
 
+
+
 while True:
     s.enter(delay_seconds1, 1, search_flights, kwargs = {"data_pack": data_package,
                                                          "period": "short",
@@ -74,6 +77,7 @@ while True:
                                                          "period": "long",
                                                          "msg_cache": message_cache,
                                                          })
+    s.enter(3600, 3, notification_manager.send_sms, argument = "💟")
     s.run()
 
 # s.enter(1, 2, search_flights, kwargs = {"data_pack": data_package, "period": "long"})
