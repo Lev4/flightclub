@@ -10,4 +10,3 @@ DATAFILE_PATH = os.path.join('FlightDeals.xlsx')
 
 
 
-
