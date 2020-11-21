@@ -64,26 +64,22 @@ def search_flights(data_pack, period, msg_cache):
 
 
 message_cache = []
-
 sched = BlockingScheduler()
 
 
 def checkflighs_short():
     search_flights(data_package, "short", message_cache)
-    time.sleep(10)
 
 
 def checkflights_long():
     search_flights(data_package, "long", message_cache)
-    time.sleep(15)
 
 
 def healthcheck():
     notification_manager.send_sms("💟")
-    time.sleep(20)
 
 
 sched.add_job(checkflighs_short, 'interval', minutes = 5)
 sched.add_job(checkflights_long, 'interval', minutes = 3)
-sched.add_job(healthcheck, 'interval', minutes = 1)
+sched.add_job(healthcheck, 'interval', hours = 1)
 sched.start()
