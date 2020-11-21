@@ -2,10 +2,9 @@ import logging
 import pandas as pd
 from config import DATAFILE_PATH
 
-logging.basicConfig(level = logging.INFO)
+logging.basicConfig(level=logging.INFO)
 
 fpth = DATAFILE_PATH
-
 
 class DataManager:
 
